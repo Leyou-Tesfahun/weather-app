@@ -1,40 +1,27 @@
-import { useState } from "react";
-
-export default function SearchBar({ onSearch, error }) {
-  const [city, setCity] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (city.trim()) {
-      onSearch(city.trim());
-      setCity("");
-    }
-  };
-
+export default function SearchBar({ query, onQueryChange, onSubmit, onClear, onLocationClick, onKeyDown }) {
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row items-stretch gap-3 mb-6"
-    >
+    <form onSubmit={onSubmit} className="flex items-center bg-white dark:bg-gray-800 rounded-full shadow px-4 py-2">
       <input
         type="text"
-        placeholder="Enter city name..."
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        autoFocus
-        aria-label="City name input"
-        className="w-full sm:w-64 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm"
+        value={query}
+        onChange={(e) => onQueryChange(e.target.value)}
+        onKeyDown={onKeyDown}
+        placeholder="Search for a city..."
+        className="flex-1 bg-transparent outline-none text-lg dark:text-white"
+        autoComplete="off"
+        aria-label="City search input"
       />
-      <button
-        type="submit"
-        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition"
-      >
-        Search
-      </button>
-
-      {error && (
-        <p className="text-red-500 text-sm mt-2 sm:mt-0">{error}</p>
+      {query && (
+        <button type="button" onClick={onClear} aria-label="Clear search" className="p-1 text-gray-500 dark:text-gray-400">
+          ✕
+        </button>
       )}
+      <button type="submit" aria-label="Search" className="p-1 ml-2 text-gray-500 dark:text-gray-400">
+        🔍
+      </button>
+      <button type="button" onClick={onLocationClick} aria-label="Use my location" className="ml-3 p-1 text-blue-500 dark:text-blue-300">
+        📍
+      </button>
     </form>
   );
 }
