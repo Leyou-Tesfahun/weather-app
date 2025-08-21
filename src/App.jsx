@@ -6,7 +6,7 @@ import { weatherImages } from "./assets/weatherImages";
 import CityDropdown from "./components/CityDropdown";
 
 export default function App() {
-  const { weather, loading, error, fetchWeather, fetchWeatherByLocation } = useWeather();
+  const { weather, loading, error, fetchWeather, fetchWeatherByLocation } = useWeather("");
   const { 
     query, 
     setQuery, 

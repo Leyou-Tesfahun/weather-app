@@ -55,9 +55,7 @@ export function useWeather(initialCity = 'San Francisco') {
     );
   };
 
-  useEffect(() => {
-    fetchWeather(initialCity);
-  }, []);
+  // Removed automatic initial fetch to let user search manually or use geolocation
 
   return {
     weather,
