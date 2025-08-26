@@ -1,10 +1,11 @@
+// src/components/SearchBar.jsx
 export default function SearchBar({ query, onQueryChange, onSubmit, onClear, onLocationClick, onKeyDown }) {
   return (
     <form onSubmit={onSubmit} className="flex items-center bg-white dark:bg-gray-800 rounded-full shadow px-4 py-2">
       <input
         type="text"
         value={query}
-        onChange={onInputChange}
+        onChange={(e) => onQueryChange(e.target.value)} // FIXED: Changed from onInputChange to onQueryChange
         onKeyDown={onKeyDown}
         placeholder="Search for a city..."
         className="flex-1 bg-transparent outline-none text-lg dark:text-white"
@@ -25,4 +26,3 @@ export default function SearchBar({ query, onQueryChange, onSubmit, onClear, onL
     </form>
   );
 }
-
