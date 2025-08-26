@@ -8,10 +8,10 @@ export default function WeatherStatsGrid({
   cloudCover, 
   unit 
 }) {
-  const speedUnit = unit === "celsius" ? "km/h" : "mph"; // FIXED: Changed from "metric" to "celsius"
+  const speedUnit = unit === "metric" ? "km/h" : "mph"; // CHANGED: from "celsius" to "metric"
 
   const stats = [
-    { label: "Feels Like", value: `${feelsLike}${unit === "celsius" ? "°C" : "°F"}` }, // FIXED
+    { label: "Feels Like", value: `${feelsLike}${unit === "metric" ? "°C" : "°F"}` }, // CHANGED
     { label: "Wind Speed", value: `${windSpeed} ${speedUnit}` },
     { label: "Humidity", value: `${humidity}%` },
     { label: "Pressure", value: `${pressure} hPa` },
