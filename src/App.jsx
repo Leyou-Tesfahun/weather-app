@@ -29,7 +29,7 @@ export default function App() {
   
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [theme, setTheme] = useState('light');
-  const [unit, setUnit] = useState('celsius');
+  const [unit, setUnit] = useState('metric'); // CHANGED: from 'celsius' to 'metric'
 
   // Sync theme with HTML class and localStorage
   useEffect(() => {
@@ -125,12 +125,12 @@ export default function App() {
   };
 
   const toggleUnit = () => {
-    setUnit(prev => prev === 'celsius' ? 'fahrenheit' : 'celsius');
+    setUnit(prev => prev === 'metric' ? 'imperial' : 'metric'); // CHANGED: from celsius/fahrenheit to metric/imperial
   };
 
   // Convert temperature based on unit
   const convertTemperature = (temp) => {
-    if (unit === 'fahrenheit') {
+    if (unit === 'imperial') { // CHANGED: from 'fahrenheit' to 'imperial'
       return Math.round((temp * 9/5) + 32);
     }
     return temp;
@@ -208,7 +208,7 @@ export default function App() {
                   icon: weather.icon,
                   feelsLike: convertTemperature(weather.feelsLike)
                 }}
-                unit={unit}
+                unit={unit} // Now passes 'metric' or 'imperial'
                 date={WeatherService.formatDate(weather.timestamp)}
               />
             </div>
@@ -222,7 +222,7 @@ export default function App() {
                 pressure={weather.pressure}
                 visibility={weather.visibility}
                 cloudCover={weather.cloudCover}
-                unit={unit}
+                unit={unit} // Now passes 'metric' or 'imperial'
               />
             </div>
           </>
