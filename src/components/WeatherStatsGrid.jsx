@@ -1,3 +1,4 @@
+// src/components/WeatherStatsGrid.jsx
 export default function WeatherStatsGrid({ 
   feelsLike, 
   windSpeed, 
@@ -7,10 +8,10 @@ export default function WeatherStatsGrid({
   cloudCover, 
   unit 
 }) {
-  const speedUnit = unit === "metric" ? "km/h" : "mph";
+  const speedUnit = unit === "celsius" ? "km/h" : "mph"; // FIXED: Changed from "metric" to "celsius"
 
   const stats = [
-    { label: "Feels Like", value: `${feelsLike}${unit === "metric" ? "°C" : "°F"}` },
+    { label: "Feels Like", value: `${feelsLike}${unit === "celsius" ? "°C" : "°F"}` }, // FIXED
     { label: "Wind Speed", value: `${windSpeed} ${speedUnit}` },
     { label: "Humidity", value: `${humidity}%` },
     { label: "Pressure", value: `${pressure} hPa` },
