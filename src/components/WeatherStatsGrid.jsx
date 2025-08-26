@@ -1,4 +1,3 @@
-// src/components/WeatherStatsGrid.jsx
 export default function WeatherStatsGrid({ 
   feelsLike, 
   windSpeed, 
