@@ -3,8 +3,6 @@ import { useWeather } from "./hooks/useWeather";
 import { useCitySearch } from "./hooks/useCitySearch";
 import { WeatherService } from "./services/weatherService";
 import { weatherImages } from "./assets/weatherImages";
-
-// Import all your components
 import CityDropdown from "./components/CityDropdown";
 import DefaultState from "./components/DefaultState";
 import ErrorAlert from "./components/ErrorAlert";
