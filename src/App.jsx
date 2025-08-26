@@ -2,24 +2,19 @@ import React, { useState } from "react";
 import { useWeather } from "./hooks/useWeather";
 import { useCitySearch } from "./hooks/useCitySearch";
 import { WeatherService } from "./services/weatherService";
-import { weatherImages } from "./assets/weatherImages";
 import CityDropdown from "./components/CityDropdown";
 import DefaultState from "./components/DefaultState";
 import ErrorAlert from "./components/ErrorAlert";
-import ErrorMessage from "./components/ErrorMessage";
-import Forecast from "./components/Forecast";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
-import LoadingSpinner from "./components/LoadingSpinner";
 import SearchBar from "./components/SearchBar";
 import ThemeToggle from "./components/ThemeToggle";
 import UnitToggle from "./components/UnitToggle";
 import WeatherCard from "./components/WeatherCard";
-import WeatherDisplay from "./components/WeatherDisplay";
 import WeatherStatsGrid from "./components/WeatherStatsGrid";
 
 export default function App() {
-  const { weather, loading, error, fetchWeather, fetchWeatherByLocation } = useWeather("");
+  const { weather, loading, error, fetchWeather, fetchWeatherByLocation } = useWeather();
   const { 
     query, 
     setQuery, 
@@ -184,13 +179,16 @@ export default function App() {
             {/* Weather Card */}
             <div className="max-w-2xl mx-auto mb-8">
               <WeatherCard
-                city={weather.city}
-                country={weather.country}
-                temperature={convertTemperature(weather.temperature)}
-                description={weather.description}
-                icon={weather.icon}
-                date={WeatherService.formatDate(weather.timestamp)}
+                weather={{
+                  city: weather.city,
+                  country: weather.country,
+                  temperature: convertTemperature(weather.temperature),
+                  description: weather.description,
+                  icon: weather.icon,
+                  feelsLike: convertTemperature(weather.feelsLike)
+                }}
                 unit={unit}
+                date={WeatherService.formatDate(weather.timestamp)}
               />
             </div>
 
@@ -206,9 +204,6 @@ export default function App() {
                 unit={unit}
               />
             </div>
-
-            {/* Forecast Component (if you have forecast data) */}
-            {/* <Forecast forecastData={weather.forecast} unit={unit} /> */}
           </>
         )}
 
@@ -219,17 +214,6 @@ export default function App() {
               title="Welcome to Weather App"
               message="Search for a city or use your location to get started"
               icon="partial sun.png"
-            />
-          </div>
-        )}
-
-        {/* Weather Display (alternative comprehensive display) */}
-        {weather && !loading && (
-          <div className="max-w-4xl mx-auto mt-8">
-            <WeatherDisplay 
-              weatherData={weather}
-              unit={unit}
-              onUnitToggle={toggleUnit}
             />
           </div>
         )}
