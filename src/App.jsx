@@ -46,7 +46,6 @@ export default function App() {
     setSelectedIndex(-1);
   };
 
-  // FIXED: This function now works with your SearchBar component
   const handleQueryChange = (value) => {
     setQuery(value);
     setSelectedIndex(-1);
@@ -130,11 +129,11 @@ export default function App() {
           }
         />
 
-        {/* Search Bar Component - FIXED PROP NAMES */}
+        {/* Search Bar Component */}
         <div className="w-full max-w-xl mx-auto mb-8 relative">
           <SearchBar
             query={query}
-            onQueryChange={handleQueryChange} {/* FIXED: Changed from onInputChange to onQueryChange */}
+            onQueryChange={handleQueryChange}
             onKeyDown={handleKeyDown}
             onClear={clearSearch}
             onSubmit={handleSearch}
