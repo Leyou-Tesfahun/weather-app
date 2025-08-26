@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useWeather } from "./hooks/useWeather";
 import { useCitySearch } from "./hooks/useCitySearch";
 import { WeatherService } from "./services/weatherService";
@@ -30,6 +30,27 @@ export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [theme, setTheme] = useState('light');
   const [unit, setUnit] = useState('celsius');
+
+  // Sync theme with HTML class and localStorage
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [theme]);
+
+  // Load saved theme on component mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
