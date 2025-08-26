@@ -5,10 +5,10 @@ export default function SearchBar({ query, onQueryChange, onSubmit, onClear, onL
       <input
         type="text"
         value={query}
-        onChange={(e) => onQueryChange(e.target.value)} // FIXED: Changed from onInputChange to onQueryChange
+        onChange={(e) => onQueryChange(e.target.value)} // This should work now
         onKeyDown={onKeyDown}
         placeholder="Search for a city..."
-        className="flex-1 bg-transparent outline-none text-lg dark:text-white"
+        className="flex-1 bg-transparent outline-none text-lg dark:text-white px-2"
         autoComplete="off"
         aria-label="City search input"
       />
