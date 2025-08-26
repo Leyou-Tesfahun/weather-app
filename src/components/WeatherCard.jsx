@@ -1,7 +1,12 @@
+// components/WeatherCard.jsx
 import React from "react";
+import { WeatherService } from "../services/weatherService"; // Import WeatherService
 
 export default function WeatherCard({ weather, unit, date }) {
+  if (!weather) return null; // Add null check
+  
   const tempUnit = unit === "metric" ? "°C" : "°F";
+  
   return (
     <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-2xl shadow-lg p-8 flex flex-col sm:flex-row items-center gap-6">
       <div className="flex-1">
@@ -18,7 +23,9 @@ export default function WeatherCard({ weather, unit, date }) {
       <img
         src={WeatherService.getWeatherImage(weather.icon)}
         alt={WeatherService.getWeatherImageAlt(weather.icon)}
-        onError={(e) => (e.currentTarget.src = WeatherService.getDefaultImage())}
+        onError={(e) => {
+          e.currentTarget.src = WeatherService.getWeatherImage('01d'); // Fallback to sunny image
+        }}
         className="w-24 h-24 object-contain"
       />
     </div>
