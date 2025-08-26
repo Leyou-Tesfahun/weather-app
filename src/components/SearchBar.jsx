@@ -5,7 +5,7 @@ export default function SearchBar({ query, onQueryChange, onSubmit, onClear, onL
       <input
         type="text"
         value={query}
-        onChange={(e) => onQueryChange(e.target.value)} // This should work now
+        onChange={(e) => onQueryChange(e.target.value)}
         onKeyDown={onKeyDown}
         placeholder="Search for a city..."
         className="flex-1 bg-transparent outline-none text-lg dark:text-white px-2"
